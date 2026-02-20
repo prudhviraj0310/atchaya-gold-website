@@ -123,6 +123,38 @@ export default function ContactForm() {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
+                                    <label htmlFor="pincode" className="block text-sm font-medium text-text-dark mb-1.5 flex items-center gap-2">
+                                        <MapPin className="w-4 h-4 text-brand-red" />
+                                        Pincode *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="pincode"
+                                        id="pincode"
+                                        required
+                                        pattern="[0-9]{6}"
+                                        placeholder="e.g., 600001"
+                                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-text-dark placeholder:text-gray-400"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="location" className="block text-sm font-medium text-text-dark mb-1.5 flex items-center gap-2">
+                                        <MapPin className="w-4 h-4 text-brand-red" />
+                                        Location Name *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        id="location"
+                                        required
+                                        placeholder="e.g., Anna Nagar, Chennai"
+                                        className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-text-dark placeholder:text-gray-400"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
                                     <label htmlFor="branch" className="block text-sm font-medium text-text-dark mb-1.5 flex items-center gap-2">
                                         <MapPin className="w-4 h-4 text-brand-red" />
                                         Nearest Branch

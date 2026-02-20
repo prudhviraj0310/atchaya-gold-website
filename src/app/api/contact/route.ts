@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { name, phone, branch, goldWeight, message } = body;
+        const { name, phone, pincode, location, branch, weight, message } = body;
 
         // Validation
         if (!name || !phone) {
@@ -26,8 +26,10 @@ export async function POST(request: Request) {
         console.log("New lead received:", {
             name,
             phone,
+            pincode,
+            location,
             branch,
-            goldWeight,
+            weight,
             message,
             timestamp: new Date().toISOString(),
         });
