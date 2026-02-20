@@ -46,7 +46,7 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
                         muted
                         playsInline
                         loop
-                        preload="metadata"
+                        preload="none"
                         poster={video.poster}
                         onEnded={() => setPlaying(false)}
                     >
