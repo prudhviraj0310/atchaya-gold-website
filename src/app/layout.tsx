@@ -75,14 +75,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`} suppressHydrationWarning>
         {children}
       </body>
     </html>
