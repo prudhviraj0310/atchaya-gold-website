@@ -6,17 +6,17 @@ import { COMPANY } from "@/lib/constants";
 
 export default function Hero() {
     return (
-        <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-[#E8EEF8] via-[#EFF2F8] to-white">
+        <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-brand-red to-[#B9181C]">
             {/* Decorative Leaf SVGs (like the live site) */}
             <div className="absolute top-10 right-10 w-40 h-40 opacity-10 pointer-events-none">
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#076951" strokeWidth="1" fill="none" />
-                    <path d="M60 10C50 30 30 50 20 70C40 60 60 40 60 10Z" stroke="#076951" strokeWidth="1" fill="none" />
+                    <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#FFE600" strokeWidth="1" fill="none" />
+                    <path d="M60 10C50 30 30 50 20 70C40 60 60 40 60 10Z" stroke="#FFE600" strokeWidth="1" fill="none" />
                 </svg>
             </div>
             <div className="absolute bottom-20 left-5 w-32 h-32 opacity-10 pointer-events-none rotate-180">
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#076951" strokeWidth="1" fill="none" />
+                    <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#FFE600" strokeWidth="1" fill="none" />
                 </svg>
             </div>
 
@@ -31,7 +31,7 @@ export default function Hero() {
                         transition={{ duration: 0.6 }}
                         className="lg:hidden flex justify-center"
                     >
-                        <div className="relative w-72 h-80 rounded-3xl overflow-hidden bg-mint-bg">
+                        <div className="relative w-72 h-80 rounded-3xl overflow-hidden bg-white/10">
                             <img
                                 src="/images/actress-hero.png"
                                 alt="Trusted Gold Buying - Atchaya Gold Company"
@@ -47,14 +47,14 @@ export default function Hero() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 font-serif">
-                            <span className="text-brand-red">Sell Your Gold</span>
+                            <span className="text-white">Sell Your Gold</span>
                             <br />
-                            <span className="text-brand-red">with Confidence</span>
+                            <span className="text-white">with Confidence</span>
                             <br />
-                            <span className="text-brand-red">& Clarity!</span>
+                            <span className="text-gold-accent">& Clarity!</span>
                         </h1>
 
-                        <p className="text-lg text-text-muted mb-8 max-w-lg leading-relaxed">
+                        <p className="text-lg text-white/90 mb-8 max-w-lg leading-relaxed">
                             {COMPANY.subtext} Get the best market rates with our certified testing
                             and instant payment — at any of our 8 branches across Tamil Nadu.
                         </p>
@@ -63,14 +63,14 @@ export default function Hero() {
                         <div className="flex flex-wrap gap-4">
                             <a
                                 href="#contact"
-                                className="group flex items-center gap-2 px-7 py-3.5 bg-brand-red text-white font-bold rounded-lg text-sm hover:bg-brand-red-dark hover:shadow-xl transition-all duration-300"
+                                className="group flex items-center gap-2 px-7 py-3.5 bg-gold-accent text-text-dark font-bold rounded-lg text-sm hover:bg-yellow-500 hover:shadow-xl transition-all duration-300 shadow-lg shadow-gold-accent/20"
                             >
                                 <Calendar className="w-4 h-4" />
                                 Book Free Valuation
                             </a>
                             <a
                                 href={`tel:${COMPANY.phone}`}
-                                className="flex items-center gap-2 px-7 py-3.5 bg-white border-2 border-brand-red text-brand-red font-semibold rounded-lg text-sm hover:bg-red-50 transition-all duration-300"
+                                className="flex items-center gap-2 px-7 py-3.5 bg-transparent border-2 border-white/80 text-white font-semibold rounded-lg text-sm hover:bg-white hover:text-brand-red transition-all duration-300"
                             >
                                 <Phone className="w-4 h-4" />
                                 Call Now
@@ -91,7 +91,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
-                            className="flex gap-8 mt-12 pt-8 border-t border-gray-200"
+                            className="flex gap-8 mt-12 pt-8 border-t border-white/20"
                         >
                             {[
                                 { number: "8+", label: "Branches" },
@@ -99,8 +99,8 @@ export default function Hero() {
                                 { number: "100%", label: "Transparent" },
                             ].map((stat) => (
                                 <div key={stat.label}>
-                                    <div className="text-2xl font-bold text-brand-red">{stat.number}</div>
-                                    <div className="text-xs text-text-muted mt-1">{stat.label}</div>
+                                    <div className="text-2xl font-bold text-gold-accent">{stat.number}</div>
+                                    <div className="text-xs text-white/80 mt-1">{stat.label}</div>
                                 </div>
                             ))}
                         </motion.div>
@@ -115,17 +115,17 @@ export default function Hero() {
                     >
                         <div className="relative">
                             {/* Mint green container like the live site */}
-                            <div className="relative rounded-[40px] overflow-hidden bg-mint-bg p-4">
+                            <div className="relative rounded-[40px] overflow-hidden bg-white/10 p-4">
                                 {/* Decorative Leaves */}
                                 <div className="absolute top-4 right-4 w-24 h-24 opacity-20 pointer-events-none">
                                     <svg viewBox="0 0 100 100" fill="none">
-                                        <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#8CB5A8" strokeWidth="1.5" fill="none" />
-                                        <path d="M60 10C50 30 30 50 20 70C40 60 60 40 60 10Z" stroke="#8CB5A8" strokeWidth="1.5" fill="none" />
+                                        <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#FFE600" strokeWidth="1.5" fill="none" />
+                                        <path d="M60 10C50 30 30 50 20 70C40 60 60 40 60 10Z" stroke="#FFE600" strokeWidth="1.5" fill="none" />
                                     </svg>
                                 </div>
                                 <div className="absolute bottom-8 left-4 w-20 h-20 opacity-15 pointer-events-none rotate-45">
                                     <svg viewBox="0 0 100 100" fill="none">
-                                        <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#8CB5A8" strokeWidth="1.5" fill="none" />
+                                        <path d="M80 20C60 30 40 50 30 80C50 70 70 50 80 20Z" stroke="#FFE600" strokeWidth="1.5" fill="none" />
                                     </svg>
                                 </div>
 
