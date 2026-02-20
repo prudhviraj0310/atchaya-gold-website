@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
 
@@ -42,12 +43,9 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.15 }}
-            className="group relative"
+        <div
+            className="group relative animate-in fade-in slide-in-from-bottom-4"
+            style={{ animationDelay: `${index * 150}ms`, animationFillMode: "both" }}
         >
             <div
                 className="relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all cursor-pointer"
@@ -55,11 +53,12 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
             >
                 <div className="aspect-video relative bg-gray-100">
                     {!hasInteracted ? (
-                        <img
+                        <Image
                             src={video.poster}
                             alt={video.title}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     ) : (
                         <video
@@ -94,7 +93,7 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
                     <p className="text-xs text-text-muted mt-1">{video.desc}</p>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }
 
