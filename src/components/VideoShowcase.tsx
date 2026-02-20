@@ -12,16 +12,30 @@ const VIDEOS = [
 
 function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number }) {
     const [playing, setPlaying] = useState(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const togglePlay = () => {
+        if (!hasInteracted) {
+            setHasInteracted(true);
+            setPlaying(true);
+            // Provide a small timeout to allow the video element to mount before playing
+            setTimeout(() => {
+                if (videoRef.current) {
+                    videoRef.current.muted = false;
+                    videoRef.current.play().catch(console.error);
+                }
+            }, 100);
+            return;
+        }
+
         if (videoRef.current) {
             if (playing) {
                 videoRef.current.pause();
                 videoRef.current.muted = true;
             } else {
                 videoRef.current.muted = false;
-                videoRef.current.play();
+                videoRef.current.play().catch(console.error);
             }
             setPlaying(!playing);
         }
@@ -39,19 +53,26 @@ function VideoCard({ video, index }: { video: typeof VIDEOS[0]; index: number })
                 className="relative rounded-2xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-lg transition-all cursor-pointer"
                 onClick={togglePlay}
             >
-                <div className="aspect-video relative">
-                    <video
-                        ref={videoRef}
-                        className="w-full h-full object-cover"
-                        muted
-                        playsInline
-                        loop
-                        preload="none"
-                        poster={video.poster}
-                        onEnded={() => setPlaying(false)}
-                    >
-                        <source src={video.src} type="video/mp4" />
-                    </video>
+                <div className="aspect-video relative bg-gray-100">
+                    {!hasInteracted ? (
+                        <img
+                            src={video.poster}
+                            alt={video.title}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    ) : (
+                        <video
+                            ref={videoRef}
+                            className="w-full h-full object-cover"
+                            muted
+                            playsInline
+                            loop
+                            onEnded={() => setPlaying(false)}
+                        >
+                            <source src={video.src} type="video/mp4" />
+                        </video>
+                    )}
 
                     {/* Play Button Overlay */}
                     <div
