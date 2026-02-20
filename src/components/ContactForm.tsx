@@ -1,16 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, User, Phone, MapPin, Weight, MessageSquare } from "lucide-react";
 import { BRANCHES, COMPANY } from "@/lib/constants";
 
 export default function ContactForm() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [captcha, setCaptcha] = useState({ num1: 0, num2: 0 });
+    const [captchaInput, setCaptchaInput] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+
+    useEffect(() => {
+        setCaptcha({
+            num1: Math.floor(Math.random() * 10) + 1,
+            num2: Math.floor(Math.random() * 10) + 1,
+        });
+    }, []);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+
+        if (parseInt(captchaInput) !== captcha.num1 + captcha.num2) {
+            setStatus("error");
+            setErrorMessage("Incorrect Math Captcha answer.");
+            return;
+        }
+
         setStatus("submitting");
+        setErrorMessage("");
 
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData);
@@ -25,11 +43,14 @@ export default function ContactForm() {
             if (res.ok) {
                 setStatus("success");
                 (e.target as HTMLFormElement).reset();
+                setCaptchaInput("");
             } else {
                 setStatus("error");
+                setErrorMessage("Failed to send. Please try again.");
             }
         } catch {
             setStatus("error");
+            setErrorMessage("An unexpected error occurred.");
         }
     }
 
@@ -174,7 +195,7 @@ export default function ContactForm() {
                                 <div>
                                     <label htmlFor="weight" className="block text-sm font-medium text-text-dark mb-1.5 flex items-center gap-2">
                                         <Weight className="w-4 h-4 text-brand-red" />
-                                        Gold Weight (approx.)
+                                        Weight (approx.)
                                     </label>
                                     <input
                                         type="text"
@@ -184,6 +205,23 @@ export default function ContactForm() {
                                         className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-text-dark placeholder:text-gray-400"
                                     />
                                 </div>
+                            </div>
+
+                            <div>
+                                <label htmlFor="metalType" className="block text-sm font-medium text-text-dark mb-1.5 flex items-center gap-2">
+                                    <Weight className="w-4 h-4 text-brand-red" />
+                                    Metal Type *
+                                </label>
+                                <select
+                                    name="metalType"
+                                    id="metalType"
+                                    required
+                                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-text-dark appearance-none"
+                                >
+                                    <option value="Gold">Gold</option>
+                                    <option value="Silver">Silver</option>
+                                    <option value="Diamond">Diamond</option>
+                                </select>
                             </div>
 
                             <div>
@@ -197,6 +235,21 @@ export default function ContactForm() {
                                     rows={3}
                                     placeholder="Any additional details..."
                                     className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-text-dark placeholder:text-gray-400 resize-none"
+                                />
+                            </div>
+
+                            <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+                                <label htmlFor="captcha" className="text-sm font-medium text-text-dark">
+                                    What is {captcha.num1} + {captcha.num2}? *
+                                </label>
+                                <input
+                                    type="number"
+                                    id="captcha"
+                                    required
+                                    value={captchaInput}
+                                    onChange={(e) => setCaptchaInput(e.target.value)}
+                                    placeholder="Answer"
+                                    className="w-24 px-4 py-2 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-text-dark text-center"
                                 />
                             </div>
 
@@ -223,7 +276,7 @@ export default function ContactForm() {
                             {status === "error" && (
                                 <p className="text-red-500 text-sm flex items-center gap-2 justify-center mt-2">
                                     <AlertCircle className="w-4 h-4" />
-                                    Something went wrong. Please try again.
+                                    {errorMessage || "Something went wrong. Please try again."}
                                 </p>
                             )}
                         </form>

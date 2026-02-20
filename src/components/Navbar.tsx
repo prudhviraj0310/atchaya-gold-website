@@ -9,8 +9,6 @@ import { COMPANY } from "@/lib/constants";
 
 const NAV_LINKS = [
     { label: "Home", href: "#hero" },
-    { label: "Gold Rate", href: "#gold-rate" },
-    { label: "Calculator", href: "#calculator" },
     { label: "How It Works", href: "#process" },
     { label: "Branches", href: "#branches" },
     { label: "Contact", href: "#contact" },
