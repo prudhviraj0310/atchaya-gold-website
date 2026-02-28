@@ -57,7 +57,7 @@ const jsonLd = {
   name: "Atchaya Gold Company",
   description: "Trusted gold buying company in Tamil Nadu offering best market rates with instant payment.",
   email: "contact@atchayagoldcompany.com",
-  telephone: "+919585395856",
+  telephone: "+918883031000",
   url: "https://atchayagoldcompany.com",
   areaServed: "Tamil Nadu, India",
   priceRange: "₹₹₹",

@@ -25,13 +25,10 @@ export default function BranchCards() {
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     {BRANCHES.map((branch, i) => (
-                        <motion.div
+                        <div
                             key={branch.slug}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.05 }}
-                            className="bg-light-bg rounded-2xl p-5 border border-gray-100 hover:shadow-lg hover:border-brand-red/20 transition-all duration-300 group"
+                            className="bg-light-bg rounded-2xl p-5 border border-gray-100 hover:shadow-lg hover:border-brand-red/20 transition-all duration-300 group animate-in fade-in slide-in-from-bottom-4"
+                            style={{ animationDelay: `${i * 100}ms`, animationFillMode: "both" }}
                         >
                             <div className="flex items-center gap-2 mb-3">
                                 <MapPin className="w-5 h-5 text-brand-red" />
@@ -64,7 +61,7 @@ export default function BranchCards() {
                             >
                                 View Branch Details →
                             </Link>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

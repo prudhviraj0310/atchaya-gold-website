@@ -27,13 +27,10 @@ export default function FAQSection() {
 
                 <div className="space-y-3">
                     {FAQS.map((faq, i) => (
-                        <motion.div
+                        <div
                             key={i}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: i * 0.05 }}
-                            className="bg-white rounded-xl border border-gray-100 overflow-hidden"
+                            className="bg-white rounded-xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-bottom-2"
+                            style={{ animationDelay: `${i * 50}ms`, animationFillMode: "both" }}
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -58,7 +55,7 @@ export default function FAQSection() {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>

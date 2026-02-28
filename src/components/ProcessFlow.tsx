@@ -34,13 +34,10 @@ export default function ProcessFlow() {
                         {PROCESS_STEPS.map((step, i) => {
                             const Icon = ICON_MAP[step.icon] || Package;
                             return (
-                                <motion.div
+                                <div
                                     key={step.title}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.15 }}
-                                    className="relative text-center"
+                                    className="relative text-center animate-in fade-in slide-in-from-bottom-4"
+                                    style={{ animationDelay: `${i * 150}ms`, animationFillMode: "both" }}
                                 >
                                     {/* Step Number */}
                                     <div className="relative z-10 w-16 h-16 mx-auto mb-4 bg-brand-red rounded-2xl flex items-center justify-center shadow-lg">
@@ -51,7 +48,7 @@ export default function ProcessFlow() {
                                     </div>
                                     <h3 className="text-lg font-bold text-text-dark mb-2">{step.title}</h3>
                                     <p className="text-sm text-text-muted leading-relaxed">{step.description}</p>
-                                </motion.div>
+                                </div>
                             );
                         })}
                     </div>

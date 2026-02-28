@@ -30,20 +30,17 @@ export default function TrustSection() {
                     {TRUST_BADGES.map((badge, i) => {
                         const Icon = ICON_MAP[badge.icon] || Shield;
                         return (
-                            <motion.div
+                            <div
                                 key={badge.title}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:border-brand-red/20 transition-all duration-300 group"
+                                className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-lg hover:border-brand-red/20 transition-all duration-300 group animate-in fade-in slide-in-from-bottom-4"
+                                style={{ animationDelay: `${i * 100}ms`, animationFillMode: "both" }}
                             >
                                 <div className="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-red group-hover:text-white transition-all duration-300">
                                     <Icon className="w-6 h-6 text-brand-red group-hover:text-white transition-colors" />
                                 </div>
                                 <h3 className="font-bold text-text-dark mb-2">{badge.title}</h3>
                                 <p className="text-sm text-text-muted leading-relaxed">{badge.description}</p>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>

@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Phone, MessageCircle, MapPin, Navigation } from "lucide-react";
 import { BRANCHES, COMPANY } from "@/lib/constants";
-import GoldRateDisplay from "@/components/GoldRateDisplay";
-import GoldCalculator from "@/components/GoldCalculator";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import StickyMobileBar from "@/components/StickyMobileBar";
@@ -164,8 +162,6 @@ export default async function BranchPage({ params }: PageProps) {
                     </div>
                 </div>
 
-                <GoldRateDisplay />
-                <GoldCalculator />
                 <ContactForm />
                 <Footer />
                 <StickyMobileBar />
